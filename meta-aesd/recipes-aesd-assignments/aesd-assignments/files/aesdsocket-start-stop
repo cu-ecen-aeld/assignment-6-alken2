@@ -1,0 +1,23 @@
+# The following script is entirely attributed to Piyush Nagpal 
+# (https://github.com/cu-ecen-aeld/assignment-6-its-me-piyush/blob/b9be7bacf2ac874a53433fb2137efea793cf1ddb/meta-aesd/recipes-aesd-assignments/aesd-assignments/files/aesdsocket-start-stop)
+
+#!/bin/sh
+
+case "$1" in
+  start|"")
+    /usr/bin/aesdsocket -d
+    ;;
+  stop)
+    killall aesdsocket 2>/dev/null || true
+    ;;
+  restart)
+    killall aesdsocket 2>/dev/null || true
+    /usr/bin/aesdsocket -d
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0
